@@ -1,0 +1,103 @@
+### SIGNUP
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Francine Hahn",
+    "email": "fran_hahn@hotmail.com",
+    "password": "123456",
+    "role": "NORMAL"
+}
+
+
+### LOGIN
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "fran_hahn@hotmail.com",
+    "password": "123456"
+}
+
+
+### DELETE ACCOUNT
+DELETE http://localhost:3003/users/sf563-kufq7A-H56k8-qw86a-se6f44-gjl5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmN2ZhY2NjLWQ0YjAtNDE2Mi1hMzBkLWVkZDBiM2UyZmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjUwNTI5NiwiZXhwIjoxNjc2NTA4ODk2fQ.dw-YCbpJWpURerjNQYqmWicfbmiWxvf9o4LqsmQmzaA
+Content-Type: application/json
+
+
+### GET ACCOUNT INFORMATION
+GET http://localhost:3003/users/account
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjUzMmRkMTlkZWZlNWI1ZDk1NzA1YSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NzAxNDMzNiwiZXhwIjoxNjc3MDE3OTM2fQ._yZjT-bNlLyFYyBhw5RZDCbzUnnVA09saRZ_bRlgrW4
+Content-Type: application/json
+
+
+### GET ANOTHER USER'S ACCOUNT INFORMATION
+GET http://localhost:3003/users/sf563-kufq7A-H56k8-qw86a-se6f44-gjl5
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzVlNTM1LWRiOTctNGQ0MC1hNjFiLTk1OWY3YmMwYjI3MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1OTUyMzgsImV4cCI6MTY3NjU5ODgzOH0.TwbmaKRhKAUFJv7JLLhpNtjESFSb23qYFd6HpyPhknI
+Content-Type: application/json
+
+
+### FOLLOW
+POST http://localhost:3003/users/follow/63f532dd19defe5b5d95705a
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjU0NDBjZDIzMTZjMmI1YjAxY2E1ZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcwMTgxNDAsImV4cCI6MTY3NzAyMTc0MH0.DHRPatR5scq46aFTJ1qLmGAfT8sg5_mHRo3fh-fyo7Y
+Content-Type: application/json
+
+
+### UNFOLLOW
+DELETE http://localhost:3003/users/unfollow
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InNkNGl1LTZyODRjZC1hc2tqYmRhai01NjRzZDQ2YWQta2pzZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1OTAwOTcsImV4cCI6MTY3NjU5MzY5N30.NU888hpEDdxqKM1KRGRojxAGvRHl51OO-woj91n_yiA
+Content-Type: application/json
+
+{
+    "userId": "987DF-500Zg5A-8gud9-ssds-k65ZSA-HS5A"
+}
+
+
+### CREATE RECIPE
+POST http://localhost:3003/recipes/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1MDAyMTIsImV4cCI6MTY3NjUwMzgxMn0.fH5N11TkVtLUwvm4WAuNVvU8xwFQR-8baNxLu2EtdoM
+Content-Type: application/json
+
+{
+    "title": "teste",
+    "description": "descrição teste"
+}
+
+
+### EDIT RECIPE
+PUT http://localhost:3003/recipes/6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1MDAyMTIsImV4cCI6MTY3NjUwMzgxMn0.fH5N11TkVtLUwvm4WAuNVvU8xwFQR-8baNxLu2EtdoM
+Content-Type: application/json
+
+{
+    "title": "teste3",
+    "description": "descrição 2"
+}
+
+
+### DELETE RECIPE
+DELETE http://localhost:3003/recipes/7
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmN2ZhY2NjLWQ0YjAtNDE2Mi1hMzBkLWVkZDBiM2UyZmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjUwMTQ3NiwiZXhwIjoxNjc2NTA1MDc2fQ.L_EVnVMd_a893Tb-ks3cBWI26XdretrFb5K8PZKX_8g
+Content-Type: application/json
+
+
+### GET RECIPES
+GET http://localhost:3003/recipes
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzYzMzU2MzQsImV4cCI6MTY3NjMzOTIzNH0.i-iV_D66eRv-w2r0c4yGmJo7sxvcs8fQHbbxk4iCD-o
+Content-Type: application/json
+
+
+### GET RECIPE BY ID
+GET http://localhost:3003/recipes/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY0MTYzMTMsImV4cCI6MTY3NjQxOTkxM30.8UT57VuKUCQVtqARp4v6OjFn8y0upwpcSHo-AKWyIW0
+Content-Type: application/json
+
+
+### RECOVER PASSWORD
+PUT http://localhost:3003/users/recoverPassword
+Content-Type: application/json
+
+{
+    "email": "fran_hahn@hotmail.com"
+}
