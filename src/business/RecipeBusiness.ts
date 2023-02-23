@@ -1,9 +1,10 @@
 import { CustomError } from "../error/CustomError"
-import { MissingDescription, MissingRecipeId, MissingTitle, NoRecipeFound } from "../error/recipeErrors"
+import { MissingDescription, MissingRecipeId, MissingTitle, NoRecipesFound } from "../error/recipeErrors"
 import { MissingToken, Unauthorized, unauthorizedUserRole, userNotAllowedToDeleteRecipe, userNotAllowedToEditRecipe } from "../error/userErrors"
-import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, Recipe, updateRecipeDTO } from "../model/Recipe"
-import { USER_ROLE } from "../model/UserModel"
+import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, pushRecipeDTO, Recipe, updateRecipeDTO } from "../model/Recipe"
+import { USER_ROLE } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
+import { IdGenerator } from "../services/IdGenerator"
 import { RecipeRepository } from "./RecipeRepository"
 import { UserRepository } from "./UserRepository"
 
@@ -26,16 +27,22 @@ export class RecipeBusiness {
             }
 
             const authenticator = new Authenticator()
-            const tokenIsValid = await authenticator.getTokenData(input.token)
-
-            if (!tokenIsValid) {
-                throw new Unauthorized()
-            }
+            const {id, role} = await authenticator.getTokenData(input.token)
 
             const createdAt = new Date(new Date().toISOString().split("/").reverse().join(","))
-            const newRecipe = new Recipe(input.title, input.description, createdAt, tokenIsValid.id)
+            const recipeId = new IdGenerator().generateId()
+
+            const newRecipe: Recipe = {
+                id: recipeId,
+                title: input.title,
+                description: input.description,
+                created_at: createdAt
+            }
+
+            const user = await this.userDatabase.getUserById(id)
+            user.recipes.push(newRecipe)
             
-            await this.recipeDatabase.createRecipe(newRecipe)
+            await this.recipeDatabase.createRecipe(user)
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
@@ -43,29 +50,32 @@ export class RecipeBusiness {
     }
 
 
-    getRecipes = async (token: string): Promise<Recipe[]> => {
+    getRecipes = async (token: string): Promise<pushRecipeDTO[]> => {
         try {
             if (!token) {
                 throw new MissingToken()
             }
 
             const authenticator = new Authenticator()
-            const tokenIsValid = await authenticator.getTokenData(token)
-
-            if (!tokenIsValid) {
-                throw new Unauthorized()
-            }
+            const {id, role} = await authenticator.getTokenData(token)
             
-            const followingUsers = await this.userDatabase.getFollowingUsers(tokenIsValid.id)
+            const user = await this.userDatabase.getUserById(id)
     
-            const result: Recipe[] = []
-            for (let item of followingUsers) {
-                const recipe = await this.recipeDatabase.getRecipes(item.fk_user_id)
-                result.push(...recipe)
+            const result = []
+            for (let item of user.following) {
+                let followingUser = await this.userDatabase.getUserByEmail(item.email)
+                
+                for (let recipe of followingUser.recipes) {
+                    const pushRecipe: pushRecipeDTO = {
+                        recipe,
+                        author: item.email
+                    }
+                    result.push(pushRecipe)
+                }
             }
 
             if (result.length === 0) {
-                throw new NoRecipeFound()
+                throw new NoRecipesFound()
             }
 
             return result
@@ -76,7 +86,7 @@ export class RecipeBusiness {
     }
 
 
-    getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
+    /*getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
         try {
             if (!input.token) {
                 throw new MissingToken()
@@ -86,15 +96,11 @@ export class RecipeBusiness {
             }
 
             const authenticator = new Authenticator()
-            const tokenIsValid = await authenticator.getTokenData(input.token)
-
-            if (!tokenIsValid) {
-                throw new Unauthorized()
-            }
+            await authenticator.getTokenData(input.token)
             
             const result = await this.recipeDatabase.getRecipeById(input.id)
             if (!result) {
-                throw new NoRecipeFound()
+                throw new NoRecipesFound()
             }
 
             return result
@@ -186,5 +192,5 @@ export class RecipeBusiness {
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }
+    }*/
 }

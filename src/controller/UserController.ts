@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { UserBusiness } from "../business/UserBusiness"
-import { inputDeleteAccountDTO, inputFollowUserDTO, inputGetUserByIdDTO, inputLoginDTO, inputSignupDTO } from "../model/UserTypes"
+import { inputDeleteAccountDTO, inputGetUserByIdDTO, inputLoginDTO, inputSignupDTO } from "../model/User"
+import { inputFollowUserDTO } from "../model/Follow"
 
 
 export class UserController {
@@ -71,10 +72,10 @@ export class UserController {
     }
 
 
-    /*unfollowUser = async (req: Request, res: Response): Promise<void> => {
+    unfollowUser = async (req: Request, res: Response): Promise<void> => {
         try {
             const input: inputFollowUserDTO = {
-                userId: req.body.userId,
+                userId: req.params.userId,
                 token: req.headers.authorization as string
             }
 
@@ -129,5 +130,5 @@ export class UserController {
         } catch (err: any) {
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
         }
-    }*/
+    }
 }

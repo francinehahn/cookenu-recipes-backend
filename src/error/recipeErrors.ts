@@ -19,8 +19,8 @@ export class MissingRecipeId extends CustomError {
     }
 }
 
-export class NoRecipeFound extends CustomError {
+export class NoRecipesFound extends CustomError {
     constructor () {
-        super(404, "No recipe found.")
+        super(404, "No recipes found.")
     }
 }

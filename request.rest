@@ -3,8 +3,8 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Francine Hahn",
-    "email": "fran_hahn@hotmail.com",
+    "name": "Larissa Grendene",
+    "email": "grendene.lari@gmail.com",
     "password": "123456",
     "role": "NORMAL"
 }
@@ -16,13 +16,13 @@ Content-Type: application/json
 
 {
     "email": "fran_hahn@hotmail.com",
-    "password": "123456"
+    "password": "yeu37ydlwq"
 }
 
 
 ### DELETE ACCOUNT
-DELETE http://localhost:3003/users/sf563-kufq7A-H56k8-qw86a-se6f44-gjl5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmN2ZhY2NjLWQ0YjAtNDE2Mi1hMzBkLWVkZDBiM2UyZmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjUwNTI5NiwiZXhwIjoxNjc2NTA4ODk2fQ.dw-YCbpJWpURerjNQYqmWicfbmiWxvf9o4LqsmQmzaA
+DELETE http://localhost:3003/users/63f532dd19defe5b5d95705a
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc4NGM1Y2E2MmUzYWFhYzg5OWIxZiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NzE2NTg3NywiZXhwIjoxNjc3MTY5NDc3fQ.93rYiTIdhVE2Xkw-_h2zRc99GVDjAiGKLlynsrW1ZXc
 Content-Type: application/json
 
 
@@ -32,36 +32,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjUzMmRkMTlkZWZl
 Content-Type: application/json
 
 
-### GET ANOTHER USER'S ACCOUNT INFORMATION
-GET http://localhost:3003/users/sf563-kufq7A-H56k8-qw86a-se6f44-gjl5
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMzVlNTM1LWRiOTctNGQ0MC1hNjFiLTk1OWY3YmMwYjI3MCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1OTUyMzgsImV4cCI6MTY3NjU5ODgzOH0.TwbmaKRhKAUFJv7JLLhpNtjESFSb23qYFd6HpyPhknI
+### GET USER BY ID
+GET http://localhost:3003/users/63f532dd19defe5b5d95705a
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxNjUwMzIsImV4cCI6MTY3NzE2ODYzMn0.0lIeo5PkyEHZTsEEZh_7il722NGlzbU-gj0m-niYJGg
 Content-Type: application/json
 
 
 ### FOLLOW
-POST http://localhost:3003/users/follow/63f532dd19defe5b5d95705a
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjU0NDBjZDIzMTZjMmI1YjAxY2E1ZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcwMTgxNDAsImV4cCI6MTY3NzAyMTc0MH0.DHRPatR5scq46aFTJ1qLmGAfT8sg5_mHRo3fh-fyo7Y
+PATCH http://localhost:3003/users/follow/63f7bbcb7ee51afe621daded
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxODE4NTEsImV4cCI6MTY3NzE4NTQ1MX0.5xhcXQtWxKgry6vZMzGO8X-F_Wrjx2ECTWek5eSENbI
 Content-Type: application/json
 
 
 ### UNFOLLOW
-DELETE http://localhost:3003/users/unfollow
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InNkNGl1LTZyODRjZC1hc2tqYmRhai01NjRzZDQ2YWQta2pzZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1OTAwOTcsImV4cCI6MTY3NjU5MzY5N30.NU888hpEDdxqKM1KRGRojxAGvRHl51OO-woj91n_yiA
+PATCH http://localhost:3003/users/unfollow/63f532dd19defe5b5d95705a
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxNjA4MzQsImV4cCI6MTY3NzE2NDQzNH0.wYA6Ax1j4zhzCsq3Tkq_epyDWMA9iwWgsm4HjsmaMsI
 Content-Type: application/json
-
-{
-    "userId": "987DF-500Zg5A-8gud9-ssds-k65ZSA-HS5A"
-}
 
 
 ### CREATE RECIPE
-POST http://localhost:3003/recipes/create
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1MDAyMTIsImV4cCI6MTY3NjUwMzgxMn0.fH5N11TkVtLUwvm4WAuNVvU8xwFQR-8baNxLu2EtdoM
+PATCH http://localhost:3003/recipes/create
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxODE4NTEsImV4cCI6MTY3NzE4NTQ1MX0.5xhcXQtWxKgry6vZMzGO8X-F_Wrjx2ECTWek5eSENbI
 Content-Type: application/json
 
 {
-    "title": "teste",
-    "description": "descrição teste"
+    "title": "Empadão de frango",
+    "description": "INGREDIENTES DA MASSA: 400 g de farinha de trigo, 200 g de manteiga gelada, 1 ovo inteiro, 1 gema de ovo batido para a massa, sal a gosto, 6 colheres (sopa) de leite, 1 gema de ovo para pincelar sobre a massa. INGREDIENTES DO RECHEIO: 1 kg de peito de frango desossado, 1 cebola média picadinha, 2 dentes de alho picados e amassados, 1 tomate picado sem pele, 1 colher de sopa de azeite, cheiro-verde picado, 1 lata de milho verde, 1 lata de molho de tomate, 1 colher (sopa) cheia de farinha de trigo, 3 cubos de caldo de galinha, azeitonas picadas. MODO DE PREPARO DA MASSA: Em uma tigela, misture o trigo e a manteiga até obter uma farofa. Acrescente os demais ingredientes e amasse bem até obter uma massa lisa. Embrulhe em papel filme e leve à geladeira por aproximadamente 30 minutos. Use metade da massa para forrar a assadeira e a outra para cobrir o recheio. Pincele o empadão com a gema e leve ao forno médio (180° C), preaquecido, por aproximadamente 40 minutos. MODO DE PREPARO DO RECHEIO: Cozinhe o peito de frango, desfie e reserve. Em uma panela, coloque o azeite, frite a cebola e deixe dourar. Adicione o alho, frite por mais alguns minutos e acrescente o frango desfiado. Dissolva os cubinhos de caldo de galinha na água quente e junte ao refogado. Acrescente o trigo e mexa sem parar, vigorosamente, até obter uma consistência cremosa. Despeje o milho, as azeitonas, o cheiro-verde, o tomate e misture."
 }
 
 
@@ -84,20 +80,20 @@ Content-Type: application/json
 
 ### GET RECIPES
 GET http://localhost:3003/recipes
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzYzMzU2MzQsImV4cCI6MTY3NjMzOTIzNH0.i-iV_D66eRv-w2r0c4yGmJo7sxvcs8fQHbbxk4iCD-o
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxODIwNDQsImV4cCI6MTY3NzE4NTY0NH0.RXSkP_bZtOLa5LL1tgfaxPlGNtrjJR1zJXQWqCDWY64
 Content-Type: application/json
 
 
 ### GET RECIPE BY ID
-GET http://localhost:3003/recipes/1
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY0MTYzMTMsImV4cCI6MTY3NjQxOTkxM30.8UT57VuKUCQVtqARp4v6OjFn8y0upwpcSHo-AKWyIW0
+GET http://localhost:3003/recipes/iudhsuidha
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxODE4NTEsImV4cCI6MTY3NzE4NTQ1MX0.5xhcXQtWxKgry6vZMzGO8X-F_Wrjx2ECTWek5eSENbI
 Content-Type: application/json
 
 
 ### RECOVER PASSWORD
-PUT http://localhost:3003/users/recoverPassword
+PATCH http://localhost:3003/users/recoverPassword
 Content-Type: application/json
 
 {
-    "email": "fran_hahn@hotmail.com"
+    "email": "contato@barkwhine.com.br"
 }

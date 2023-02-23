@@ -1,14 +1,13 @@
-import { returnFollowingUsersDTO, updatePasswordDTO, User } from "../model/UserTypes"
+import { getUserInfoDTO, updatePasswordDTO, User } from "../model/User"
+import { updateFollowsDTO } from "../model/Follow"
 
 
 export interface UserRepository {
     signup (newUser: User): Promise<void>
     getUserByEmail (email: string): Promise<any>
-    getUserById (id: string): Promise<any>
-    followUser (newFollow: User): Promise<void>
-    /*unfollowUser (userId: string): Promise<void>
-    getFollowingUsers (id: string): Promise<returnFollowingUsersDTO[]>
-    searchFollowers (userId: string, followerId: string): Promise<any>
+    getUserById (id: string): Promise<getUserInfoDTO>
+    followUser (updateUser: updateFollowsDTO): Promise<void>
+    unfollowUser (updateUser: updateFollowsDTO): Promise<void>
     deleteAccount (userId: string): Promise<void>
-    recoverPassword (updatePassword: updatePasswordDTO): Promise<void>*/
+    recoverPassword (updatePassword: updatePasswordDTO): Promise<void>
 }

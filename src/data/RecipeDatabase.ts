@@ -1,32 +1,23 @@
-//import { RecipeRepository } from "../business/RecipeRepository"
-//import { CustomError } from "../error/CustomError"
+import { Model } from "../model/Model"
+import { RecipeRepository } from "../business/RecipeRepository"
+import { CustomError } from "../error/CustomError"
+import { getUserInfoDTO, User } from "../model/User"
 
 
-/*export class RecipeDatabase implements RecipeRepository {
-    TABLE_NAME = "cookenu_recipes"
+export class RecipeDatabase implements RecipeRepository {
 
-    createRecipe = async (newRecipe: Recipe): Promise<void> => {
+    createRecipe = async (user: getUserInfoDTO): Promise<void> => {
         try {
-            await BaseDatabase.connection(this.TABLE_NAME).insert(newRecipe)
+            await Model.findOneAndUpdate({"_id": user._id}, {recipes: user.recipes})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
     }
 
 
-    getRecipes = async (userId: string): Promise<Recipe[]> => {
+    /*getRecipeById = async (id: string): Promise<any> => {
         try {
-            return await BaseDatabase.connection(this.TABLE_NAME).select().where("fk_user_id", userId).orderBy("created_at", "desc")
-        } catch (err: any) {
-            throw new CustomError(err.statusCode, err.message)
-        }
-    }
-
-
-    getRecipeById = async (id: string): Promise<any> => {
-        try {
-            const result = await BaseDatabase.connection(this.TABLE_NAME).select().where("id", id)
-            return result[0]
+            return await Model.find({"recipes": [{id}]})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
@@ -51,5 +42,5 @@
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }
-}*/
+    }*/
+}

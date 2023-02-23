@@ -1,10 +1,10 @@
-/*import { Recipe, updateRecipeDTO } from "../model/UserTypes"
+import { Recipe, updateRecipeDTO } from "../model/Recipe"
+import { getUserInfoDTO } from "../model/User"
 
 
 export interface RecipeRepository {
-    createRecipe (newRecipe: Recipe): Promise<void>
-    getRecipes (userId: string): Promise<Recipe[]>
-    getRecipeById (id: string): Promise<any>
-    editRecipe (updateRecipe: updateRecipeDTO): Promise<void>
-    deleteRecipe (id: string): Promise<void>
-}*/
+    createRecipe (user: getUserInfoDTO): Promise<void>
+    //getRecipeById (id: string): Promise<any>
+    //editRecipe (updateRecipe: updateRecipeDTO): Promise<void>
+    //deleteRecipe (id: string): Promise<void>
+}

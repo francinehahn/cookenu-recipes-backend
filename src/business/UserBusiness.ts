@@ -1,6 +1,7 @@
 import { CustomError } from "../error/CustomError"
 import { DuplicateEmail, DuplicateFollow, EmailNotFound, IncorrectPassword, InvalidEmail, InvalidPassword, InvalidUserId, InvalidUserRole, MissingEmail, MissingPassword, MissingRole, MissingToken, MissingUserId, MissingUserName, NotPossibleToUnfollow, Unauthorized, userNotAllowedToDeleteAccount, UserNotFound } from "../error/userErrors"
-import { inputLoginDTO, inputSignupDTO, User, returnUserInfoDTO, inputFollowUserDTO, inputDeleteAccountDTO, USER_ROLE, updatePasswordDTO, inputGetUserByIdDTO } from "../model/UserTypes"
+import { Follow, inputFollowUserDTO, updateFollowsDTO } from "../model/Follow"
+import { inputLoginDTO, inputSignupDTO, User, returnUserInfoDTO, inputDeleteAccountDTO, USER_ROLE, updatePasswordDTO, inputGetUserByIdDTO } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { transporter } from "../services/mailTransporter"
@@ -104,7 +105,7 @@ export class UserBusiness {
             const user = await this.userDatabase.getUserById(id)
             
             const result: returnUserInfoDTO = {
-                id: user.id,
+                id: user._id,
                 name: user.name,
                 email: user.email
             }
@@ -122,16 +123,11 @@ export class UserBusiness {
             if (!input.token) {
                 throw new MissingToken()
             }
-
             if (!input.userId) {
                 throw new MissingUserId()
             }
 
             const userIdExists = await this.userDatabase.getUserById(input.userId)
-            
-            if (!userIdExists) {
-                throw new UserNotFound()
-            }
 
             const authenticator = new Authenticator()
             const {id, role} = await authenticator.getTokenData(input.token)
@@ -140,10 +136,10 @@ export class UserBusiness {
                 throw new InvalidUserId()
             }
 
-            const findUser = await this.userDatabase.getUserById(id)
+            const accountInfo = await this.userDatabase.getUserById(id)
             const findFollowingUser = await this.userDatabase.getUserById(input.userId)
             
-            for (let item of findUser.following) {
+            for (let item of accountInfo.following) {
                 if (item.email === findFollowingUser.email) {
                     throw new DuplicateFollow()
                 }
@@ -154,10 +150,14 @@ export class UserBusiness {
                 email: findFollowingUser.email
             }
 
-            findUser.following.push(newFollow)
+            accountInfo.following.push(newFollow)
 
-            const replaceUser = new User(findUser.name, findUser.email, findUser.password, findUser.role, findUser.recipes, findUser.following)
-            await this.userDatabase.followUser(replaceUser)
+            const updateUser: updateFollowsDTO = {
+                id,
+                following: accountInfo.following
+            }
+
+            await this.userDatabase.followUser(updateUser)
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
@@ -165,39 +165,38 @@ export class UserBusiness {
     }
 
 
-    /*unfollowUser = async (input: inputFollowUserDTO): Promise<void> => {
+    unfollowUser = async (input: inputFollowUserDTO): Promise<void> => {
         try {
             if (!input.token) {
                 throw new MissingToken()
             }
-
             if (!input.userId) {
                 throw new MissingUserId()
             }
 
-            const userIdExists = await this.userDatabase.getUserBy("id", input.userId)
-           
-            if (!userIdExists) {
-                throw new UserNotFound()
-            }
+            const userIdExists = await this.userDatabase.getUserById(input.userId)
 
             const authenticator = new Authenticator()
-            const tokenIsValid = await authenticator.getTokenData(input.token)
+            const {id, role} = await authenticator.getTokenData(input.token)
 
-            if (!tokenIsValid) {
-                throw new Unauthorized()
-            }
-
-            if (tokenIsValid.id === input.userId) {
+            if (id === input.userId) {
                 throw new InvalidUserId()
             }
 
-            const findUser = await this.userDatabase.searchFollowers(input.userId, tokenIsValid.id)
-            if (findUser.length === 0) {
+            let accountInfo = await this.userDatabase.getUserById(id)
+            const userToBeUnfollowed = accountInfo.following.filter((item: Follow) => item.email === userIdExists.email)
+            
+            if (userToBeUnfollowed.length === 0) {
                 throw new NotPossibleToUnfollow()
             }
 
-            await this.userDatabase.unfollowUser(input.userId)
+            const unfollowUser = accountInfo.following.filter((item: Follow) => item.email !== userIdExists.email)
+            const updateUser: updateFollowsDTO = {
+                id,
+                following: unfollowUser
+            }
+
+            await this.userDatabase.unfollowUser(updateUser)
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
@@ -210,25 +209,17 @@ export class UserBusiness {
             if (!input.token) {
                 throw new MissingToken()
             }
-
             if (!input.userId) {
                 throw new MissingUserId()
             }
 
-            const userIdExists = await this.userDatabase.getUserBy("id", input.userId)
-            if (!userIdExists) {
-                throw new UserNotFound()
-            }
+            const userIdExists = await this.userDatabase.getUserById(input.userId)
 
             const authenticator = new Authenticator()
-            const tokenIsValid = await authenticator.getTokenData(input.token)
-
-            if (!tokenIsValid) {
-                throw new Unauthorized()
-            }
+            await authenticator.getTokenData(input.token)
 
             const result: returnUserInfoDTO = {
-                id: userIdExists.id,
+                id: userIdExists._id,
                 name: userIdExists.name,
                 email: userIdExists.email
             }
@@ -251,19 +242,12 @@ export class UserBusiness {
                 throw new MissingUserId()
             }
 
-            const userIdExists = await this.userDatabase.getUserBy("id", input.userId)
-            if (!userIdExists) {
-                throw new UserNotFound()
-            }
+            await this.userDatabase.getUserById(input.userId)
 
             const authenticator = new Authenticator()
-            const tokenIsValid = await authenticator.getTokenData(input.token)
+            const {id, role} = await authenticator.getTokenData(input.token)
 
-            if (!tokenIsValid) {
-                throw new Unauthorized()
-            }
-
-            if (tokenIsValid.role.toUpperCase() !== USER_ROLE.ADMIN) {
+            if (role.toUpperCase() !== USER_ROLE.ADMIN) {
                 throw new userNotAllowedToDeleteAccount()
             }
 
@@ -281,7 +265,7 @@ export class UserBusiness {
                 throw new MissingEmail()
             }
         
-            const emailExists = await this.userDatabase.getUserBy("email", email)
+            const emailExists = await this.userDatabase.getUserByEmail(email)
             if (!emailExists) {
                 throw new EmailNotFound()
             }
@@ -308,5 +292,5 @@ export class UserBusiness {
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }*/
+    }
 }

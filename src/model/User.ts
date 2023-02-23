@@ -46,14 +46,19 @@ export interface returnUserInfoDTO {
     email: string
 }
 
-export interface inputFollowUserDTO {
+export interface inputGetUserByIdDTO {
     userId: string,
     token: string
 }
 
-export interface inputGetUserByIdDTO {
-    userId: string,
-    token: string
+export interface getUserInfoDTO {
+    _id: string,
+    name: string,
+    email: string,
+    password: string,
+    role: USER_ROLE,
+    recipes: Recipe[],
+    following: Follow[]
 }
 
 export interface inputDeleteAccountDTO {
@@ -61,35 +66,7 @@ export interface inputDeleteAccountDTO {
     token: string
 }
 
-export interface returnFollowingUsersDTO {
-    fk_user_id: string
-}
-
 export interface updatePasswordDTO {
     id: string,
     password: string
-}
-
-export interface inputCreateRecipeDTO {
-    title: string,
-    description: string,
-    token: string
-}
-
-export interface inputGetRecipeDTO {
-    id: string,
-    token: string
-}
-
-export interface inputEditRecipeDTO {
-    id: string,
-    title: string,
-    description: string,
-    token: string
-}
-
-export interface updateRecipeDTO {
-    id: string,
-    title: string,
-    description: string
 }
