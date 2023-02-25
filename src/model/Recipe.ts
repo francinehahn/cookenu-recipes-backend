@@ -14,6 +14,14 @@ export class Recipe {
     }
 }
 
+export interface returnRecipesDTO {
+    id: string,
+    title: string,
+    description: string,
+    created_at: Date,
+    user: string
+}
+
 export interface inputCreateRecipeDTO {
     title: string,
     description: string,

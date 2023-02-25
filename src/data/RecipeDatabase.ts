@@ -17,6 +17,15 @@ export class RecipeDatabase implements RecipeRepository {
     }
 
 
+    getRecipes = async (userId: string): Promise<any> => {
+        try {
+            return await RecipeModel.find({user: userId})
+        } catch (err: any) {
+            throw new CustomError(err.statusCode, err.message)
+        }
+    }
+
+
     /*getRecipeById = async (id: string): Promise<any> => {
         try {
             return await Model.find({"recipes": [{id}]})

@@ -1,7 +1,7 @@
 import { CustomError } from "../error/CustomError"
 import { MissingDescription, MissingRecipeId, MissingTitle, NoRecipesFound } from "../error/recipeErrors"
 import { MissingToken, Unauthorized, unauthorizedUserRole, userNotAllowedToDeleteRecipe, userNotAllowedToEditRecipe } from "../error/userErrors"
-import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, pushRecipeDTO, Recipe, updateRecipeDTO } from "../model/Recipe"
+import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, pushRecipeDTO, Recipe, returnRecipesDTO, updateRecipeDTO } from "../model/Recipe"
 import { USER_ROLE } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
 import { IdGenerator } from "../services/IdGenerator"
@@ -39,7 +39,7 @@ export class RecipeBusiness {
     }
 
 
-    /*getRecipes = async (token: string): Promise<pushRecipeDTO[]> => {
+    getRecipes = async (token: string): Promise<returnRecipesDTO[]> => {
         try {
             if (!token) {
                 throw new MissingToken()
@@ -52,14 +52,10 @@ export class RecipeBusiness {
     
             const result = []
             for (let item of user.following) {
-                let followingUser = await this.userDatabase.getUserByEmail(item.email)
-                
-                for (let recipe of followingUser.recipes) {
-                    const pushRecipe: pushRecipeDTO = {
-                        recipe,
-                        author: item.email
-                    }
-                    result.push(pushRecipe)
+                const recipes = await this.recipeDatabase.getRecipes(item.id)
+                console.log(recipes)
+                if (recipes.length > 0) {
+                    result.push(...recipes)
                 }
             }
 
@@ -75,7 +71,7 @@ export class RecipeBusiness {
     }
 
 
-    getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
+    /*getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
         try {
             if (!input.token) {
                 throw new MissingToken()

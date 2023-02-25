@@ -152,6 +152,7 @@ export class UserBusiness {
             }
 
             const newFollow = {
+                id: idExists.id,
                 name: idExists.name,
                 email: idExists.email
             }

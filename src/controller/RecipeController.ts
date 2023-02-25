@@ -23,7 +23,7 @@ export class RecipeController {
     }
 
 
-    /*getRecipes = async (req: Request, res: Response): Promise<void> => {
+    getRecipes = async (req: Request, res: Response): Promise<void> => {
         try {
             const token = req.headers.authorization as string
             const result = await this.recipeBusiness.getRecipes(token)
@@ -35,7 +35,7 @@ export class RecipeController {
     }
 
 
-    getRecipeById = async (req: Request, res: Response): Promise<void> => {
+    /*getRecipeById = async (req: Request, res: Response): Promise<void> => {
         try {
             const input: inputGetRecipeDTO = {
                 id: req.params.id,

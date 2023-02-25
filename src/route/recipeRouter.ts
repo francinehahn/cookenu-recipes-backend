@@ -13,6 +13,6 @@ const recipeController = new RecipeController(recipeBusiness)
 
 recipeRouter.post("/create", (req, res) => recipeController.createRecipe(req, res))
 //recipeRouter.get("/:id", (req, res) => recipeController.getRecipeById(req, res))
-//recipeRouter.get("/", (req, res) => recipeController.getRecipes(req, res))
+recipeRouter.get("/", (req, res) => recipeController.getRecipes(req, res))
 /*recipeRouter.put("/:id", (req, res) => recipeController.editRecipe(req, res))
 recipeRouter.delete("/:id", (req, res) => recipeController.deleteRecipe(req, res))*/
