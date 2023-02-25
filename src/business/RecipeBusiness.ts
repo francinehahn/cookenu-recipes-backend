@@ -1,4 +1,4 @@
-/*import { CustomError } from "../error/CustomError"
+import { CustomError } from "../error/CustomError"
 import { MissingDescription, MissingRecipeId, MissingTitle, NoRecipesFound } from "../error/recipeErrors"
 import { MissingToken, Unauthorized, unauthorizedUserRole, userNotAllowedToDeleteRecipe, userNotAllowedToEditRecipe } from "../error/userErrors"
 import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, pushRecipeDTO, Recipe, updateRecipeDTO } from "../model/Recipe"
@@ -17,11 +17,9 @@ export class RecipeBusiness {
             if (!input.token) {
                 throw new MissingToken()
             }
-
             if (!input.title) {
                 throw new MissingTitle()
             }
-
             if (!input.description) {
                 throw new MissingDescription()
             }
@@ -30,19 +28,10 @@ export class RecipeBusiness {
             const {id, role} = await authenticator.getTokenData(input.token)
 
             const createdAt = new Date(new Date().toISOString().split("/").reverse().join(","))
-            const recipeId = new IdGenerator().generateId()
 
-            const newRecipe: Recipe = {
-                id: recipeId,
-                title: input.title,
-                description: input.description,
-                created_at: createdAt
-            }
-
-            const user = await this.userDatabase.getUserById(id)
-            user.recipes.push(newRecipe)
+            const newRecipe = new Recipe(input.title, input.description, createdAt, id)
             
-            await this.recipeDatabase.createRecipe(user)
+            await this.recipeDatabase.createRecipe(newRecipe)
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
@@ -50,7 +39,7 @@ export class RecipeBusiness {
     }
 
 
-    getRecipes = async (token: string): Promise<pushRecipeDTO[]> => {
+    /*getRecipes = async (token: string): Promise<pushRecipeDTO[]> => {
         try {
             if (!token) {
                 throw new MissingToken()
@@ -192,5 +181,5 @@ export class RecipeBusiness {
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }
-}*/
+    }*/
+}

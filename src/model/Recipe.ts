@@ -5,7 +5,7 @@ export class Recipe {
         private title: string,
         private description: string,
         private created_at: Date,
-        private user: mongoose.Schema.Types.ObjectId
+        private user: string
     ) {
         this.title = title
         this.description = description

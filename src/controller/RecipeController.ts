@@ -1,4 +1,4 @@
-/*import { Request, Response } from "express"
+import { Request, Response } from "express"
 import { RecipeBusiness } from "../business/RecipeBusiness"
 import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO } from "../model/Recipe"
 
@@ -23,7 +23,7 @@ export class RecipeController {
     }
 
 
-    getRecipes = async (req: Request, res: Response): Promise<void> => {
+    /*getRecipes = async (req: Request, res: Response): Promise<void> => {
         try {
             const token = req.headers.authorization as string
             const result = await this.recipeBusiness.getRecipes(token)
@@ -82,5 +82,5 @@ export class RecipeController {
         } catch (err: any) {
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
         }
-    }
-}*/
+    }*/
+}
