@@ -26,16 +26,16 @@ export class RecipeDatabase implements RecipeRepository {
     }
 
 
-    /*getRecipeById = async (id: string): Promise<any> => {
+    getRecipeById = async (id: string): Promise<any> => {
         try {
-            return await Model.find({"recipes": [{id}]})
+            return await RecipeModel.findOne({_id: id})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
     }
 
 
-    editRecipe = async (updateRecipe: updateRecipeDTO): Promise<void> => {
+    /*editRecipe = async (updateRecipe: updateRecipeDTO): Promise<void> => {
         try {
             await BaseDatabase.connection(this.TABLE_NAME)
             .update({title: updateRecipe.title, description: updateRecipe.description})

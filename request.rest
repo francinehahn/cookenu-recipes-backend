@@ -85,8 +85,8 @@ Content-Type: application/json
 
 
 ### GET RECIPE BY ID
-GET http://localhost:3003/recipes/iudhsuidha
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxODE4NTEsImV4cCI6MTY3NzE4NTQ1MX0.5xhcXQtWxKgry6vZMzGO8X-F_Wrjx2ECTWek5eSENbI
+GET http://localhost:3003/recipes/63fa87a2c72419f269589e7a
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjkyZmYxM2QwYmM5MTU0NzIzNjFkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNjYyMzcsImV4cCI6MTY3NzM2OTgzN30.fcaNXG8HbB5xamiLXdfppTDzvpwHLTeFcH8Pta_FKs4
 Content-Type: application/json
 
 

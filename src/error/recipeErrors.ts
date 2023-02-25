@@ -19,6 +19,12 @@ export class MissingRecipeId extends CustomError {
     }
 }
 
+export class InvalidRecipeId extends CustomError {
+    constructor () {
+        super(422, "Invalid recipe id.")
+    }
+}
+
 export class NoRecipesFound extends CustomError {
     constructor () {
         super(404, "No recipes found.")

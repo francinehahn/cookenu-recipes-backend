@@ -1,5 +1,6 @@
+import mongoose from "mongoose"
 import { CustomError } from "../error/CustomError"
-import { MissingDescription, MissingRecipeId, MissingTitle, NoRecipesFound } from "../error/recipeErrors"
+import { InvalidRecipeId, MissingDescription, MissingRecipeId, MissingTitle, NoRecipesFound } from "../error/recipeErrors"
 import { MissingToken, Unauthorized, unauthorizedUserRole, userNotAllowedToDeleteRecipe, userNotAllowedToEditRecipe } from "../error/userErrors"
 import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, pushRecipeDTO, Recipe, returnRecipesDTO, updateRecipeDTO } from "../model/Recipe"
 import { USER_ROLE } from "../model/User"
@@ -71,13 +72,16 @@ export class RecipeBusiness {
     }
 
 
-    /*getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
+    getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
         try {
             if (!input.token) {
                 throw new MissingToken()
             }
             if (!input.id) {
                 throw new MissingRecipeId()
+            }
+            if (!mongoose.Types.ObjectId.isValid(input.id)) {
+                throw new InvalidRecipeId()
             }
 
             const authenticator = new Authenticator()
@@ -96,7 +100,7 @@ export class RecipeBusiness {
     }
 
 
-    editRecipe = async (input: inputEditRecipeDTO): Promise<void> => {
+    /*editRecipe = async (input: inputEditRecipeDTO): Promise<void> => {
         try {
             if (!input.token) {
                 throw new MissingToken()
