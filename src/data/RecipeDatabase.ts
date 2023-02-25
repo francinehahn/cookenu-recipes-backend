@@ -1,4 +1,4 @@
-import { Model } from "../model/Model"
+/*import { UserModel } from "../model/UserModel"
 import { RecipeRepository } from "../business/RecipeRepository"
 import { CustomError } from "../error/CustomError"
 import { getUserInfoDTO, User } from "../model/User"
@@ -15,7 +15,7 @@ export class RecipeDatabase implements RecipeRepository {
     }
 
 
-    /*getRecipeById = async (id: string): Promise<any> => {
+    getRecipeById = async (id: string): Promise<any> => {
         try {
             return await Model.find({"recipes": [{id}]})
         } catch (err: any) {
@@ -42,5 +42,5 @@ export class RecipeDatabase implements RecipeRepository {
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }*/
-}
+    }
+}*/

@@ -1,14 +1,14 @@
 import { UserRepository } from "../business/UserRepository"
 import { CustomError } from "../error/CustomError"
-import { Model } from "../model/Model"
-import { getUserInfoDTO, updatePasswordDTO, User } from "../model/User"
+import { UserModel } from "../model/UserModel"
+import { updatePasswordDTO, User } from "../model/User"
 import { updateFollowsDTO } from "../model/Follow"
 
 
 export class UserDatabase implements UserRepository {
     signup = async (newUser: User): Promise<void> => {
         try {
-            await Model.create(newUser)
+            await UserModel.create(newUser)
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
@@ -17,7 +17,7 @@ export class UserDatabase implements UserRepository {
 
     followUser = async (updateUser: updateFollowsDTO): Promise<void> => {
         try {
-            await Model.findOneAndUpdate({_id: updateUser.id}, {following: updateUser.following})
+            await UserModel.findOneAndUpdate({_id: updateUser.id}, {following: updateUser.following})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
@@ -26,16 +26,16 @@ export class UserDatabase implements UserRepository {
 
     unfollowUser = async (updateUser: updateFollowsDTO): Promise<void> => {
         try {
-            await Model.findOneAndUpdate({_id: updateUser.id}, {following: updateUser.following})
+            await UserModel.findOneAndUpdate({_id: updateUser.id}, {following: updateUser.following})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
     }
 
 
-    getUserById = async (id: string): Promise<getUserInfoDTO> => {
+    getUserById = async (id: string): Promise<any> => {
         try {
-            return await Model.findOne({"_id": id})
+            return await UserModel.findOne({_id: id})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
@@ -44,7 +44,7 @@ export class UserDatabase implements UserRepository {
 
     getUserByEmail = async (email: string): Promise<any> => {
         try {
-            return await Model.findOne({email})
+            return await UserModel.findOne({email})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
@@ -53,7 +53,7 @@ export class UserDatabase implements UserRepository {
 
     deleteAccount = async (userId: string): Promise<void> => {
         try {
-            await Model.findOneAndDelete({"_id": userId})
+            await UserModel.findOneAndDelete({"_id": userId})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
@@ -62,7 +62,7 @@ export class UserDatabase implements UserRepository {
 
     recoverPassword = async (updatePassword: updatePasswordDTO): Promise<void> => {
         try {
-            await Model.findOneAndUpdate({"_id": updatePassword.id}, {password: updatePassword.password})
+            await UserModel.findOneAndUpdate({"_id": updatePassword.id}, {password: updatePassword.password})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }

@@ -1,4 +1,4 @@
-import { Request, Response } from "express"
+/*import { Request, Response } from "express"
 import { RecipeBusiness } from "../business/RecipeBusiness"
 import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO } from "../model/Recipe"
 
@@ -35,7 +35,7 @@ export class RecipeController {
     }
 
 
-    /*getRecipeById = async (req: Request, res: Response): Promise<void> => {
+    getRecipeById = async (req: Request, res: Response): Promise<void> => {
         try {
             const input: inputGetRecipeDTO = {
                 id: req.params.id,
@@ -82,5 +82,5 @@ export class RecipeController {
         } catch (err: any) {
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
         }
-    }*/
-}
+    }
+}*/

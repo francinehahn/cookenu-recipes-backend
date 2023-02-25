@@ -1,5 +1,4 @@
 import { Follow } from "./Follow"
-import { Recipe } from "./Recipe"
 
 export enum USER_ROLE {
     ADMIN = "ADMIN",
@@ -12,14 +11,12 @@ export class User {
         private email: string,
         private password: string,
         private role: USER_ROLE,
-        private recipes: Recipe[],
         private following: Follow[]
     ) {
         this.name = name
         this.email = email
         this.password = password
         this.role = role
-        this.recipes = recipes
         this.following = following
     }
 
@@ -57,7 +54,6 @@ export interface getUserInfoDTO {
     email: string,
     password: string,
     role: USER_ROLE,
-    recipes: Recipe[],
     following: Follow[]
 }
 

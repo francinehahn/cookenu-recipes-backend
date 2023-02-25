@@ -1,4 +1,4 @@
-import { CustomError } from "../error/CustomError"
+/*import { CustomError } from "../error/CustomError"
 import { MissingDescription, MissingRecipeId, MissingTitle, NoRecipesFound } from "../error/recipeErrors"
 import { MissingToken, Unauthorized, unauthorizedUserRole, userNotAllowedToDeleteRecipe, userNotAllowedToEditRecipe } from "../error/userErrors"
 import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, pushRecipeDTO, Recipe, updateRecipeDTO } from "../model/Recipe"
@@ -86,7 +86,7 @@ export class RecipeBusiness {
     }
 
 
-    /*getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
+    getRecipeById = async (input: inputGetRecipeDTO): Promise<Recipe> => {
         try {
             if (!input.token) {
                 throw new MissingToken()
@@ -192,5 +192,5 @@ export class RecipeBusiness {
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }*/
-}
+    }
+}*/

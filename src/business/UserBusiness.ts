@@ -1,3 +1,4 @@
+import mongoose from "mongoose"
 import { CustomError } from "../error/CustomError"
 import { DuplicateEmail, DuplicateFollow, EmailNotFound, IncorrectPassword, InvalidEmail, InvalidPassword, InvalidUserId, InvalidUserRole, MissingEmail, MissingPassword, MissingRole, MissingToken, MissingUserId, MissingUserName, NotPossibleToUnfollow, Unauthorized, userNotAllowedToDeleteAccount, UserNotFound } from "../error/userErrors"
 import { Follow, inputFollowUserDTO, updateFollowsDTO } from "../model/Follow"
@@ -45,7 +46,7 @@ export class UserBusiness {
             const hashManager = new HashManager()
             const hashPassword = await hashManager.generateHash(input.password)
 
-            const newUser = new User(input.name, input.email, hashPassword, input.role, [], [])
+            const newUser = new User(input.name, input.email, hashPassword, input.role, [])
             
             await this.userDatabase.signup(newUser)
 
@@ -126,8 +127,14 @@ export class UserBusiness {
             if (!input.userId) {
                 throw new MissingUserId()
             }
+            if (!mongoose.Types.ObjectId.isValid(input.userId)) {
+                throw new UserNotFound()
+            }
 
-            const userIdExists = await this.userDatabase.getUserById(input.userId)
+            const idExists = await this.userDatabase.getUserById(input.userId)
+            if (!idExists) {
+                throw new UserNotFound()
+            }
 
             const authenticator = new Authenticator()
             const {id, role} = await authenticator.getTokenData(input.token)
@@ -137,17 +144,16 @@ export class UserBusiness {
             }
 
             const accountInfo = await this.userDatabase.getUserById(id)
-            const findFollowingUser = await this.userDatabase.getUserById(input.userId)
             
             for (let item of accountInfo.following) {
-                if (item.email === findFollowingUser.email) {
+                if (item.email === idExists.email) {
                     throw new DuplicateFollow()
                 }
             }
 
             const newFollow = {
-                name: findFollowingUser.name,
-                email: findFollowingUser.email
+                name: idExists.name,
+                email: idExists.email
             }
 
             accountInfo.following.push(newFollow)
@@ -173,8 +179,14 @@ export class UserBusiness {
             if (!input.userId) {
                 throw new MissingUserId()
             }
+            if (!mongoose.Types.ObjectId.isValid(input.userId)) {
+                throw new UserNotFound()
+            }
 
-            const userIdExists = await this.userDatabase.getUserById(input.userId)
+            const user = await this.userDatabase.getUserById(input.userId)
+            if (!user) {
+                throw new UserNotFound()
+            }
 
             const authenticator = new Authenticator()
             const {id, role} = await authenticator.getTokenData(input.token)
@@ -184,13 +196,13 @@ export class UserBusiness {
             }
 
             let accountInfo = await this.userDatabase.getUserById(id)
-            const userToBeUnfollowed = accountInfo.following.filter((item: Follow) => item.email === userIdExists.email)
+            const userToBeUnfollowed = accountInfo.following.filter((item: Follow) => item.email === user.email)
             
             if (userToBeUnfollowed.length === 0) {
                 throw new NotPossibleToUnfollow()
             }
-
-            const unfollowUser = accountInfo.following.filter((item: Follow) => item.email !== userIdExists.email)
+            
+            const unfollowUser = accountInfo.following.filter((item: Follow) => item.email !== user.email)
             const updateUser: updateFollowsDTO = {
                 id,
                 following: unfollowUser
@@ -212,16 +224,22 @@ export class UserBusiness {
             if (!input.userId) {
                 throw new MissingUserId()
             }
-
-            const userIdExists = await this.userDatabase.getUserById(input.userId)
+            if (!mongoose.Types.ObjectId.isValid(input.userId)) {
+                throw new UserNotFound()
+            }
+            
+            const user = await this.userDatabase.getUserById(input.userId)
+            if (!user) {
+                throw new UserNotFound()
+            }
 
             const authenticator = new Authenticator()
             await authenticator.getTokenData(input.token)
-
+            
             const result: returnUserInfoDTO = {
-                id: userIdExists._id,
-                name: userIdExists.name,
-                email: userIdExists.email
+                id: user._id,
+                name: user.name,
+                email: user.email
             }
 
             return result
@@ -237,12 +255,17 @@ export class UserBusiness {
             if (!input.token) {
                 throw new MissingToken()
             }
-
             if (!input.userId) {
                 throw new MissingUserId()
             }
+            if (!mongoose.Types.ObjectId.isValid(input.userId)) {
+                throw new UserNotFound()
+            }
 
-            await this.userDatabase.getUserById(input.userId)
+            const user = await this.userDatabase.getUserById(input.userId)
+            if (!user) {
+                throw new UserNotFound()
+            }
 
             const authenticator = new Authenticator()
             const {id, role} = await authenticator.getTokenData(input.token)

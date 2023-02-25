@@ -3,8 +3,8 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Larissa Grendene",
-    "email": "grendene.lari@gmail.com",
+    "name": "Pedro Sumaré",
+    "email": "pedro.sumare@gmail.com",
     "password": "123456",
     "role": "NORMAL"
 }
@@ -28,25 +28,25 @@ Content-Type: application/json
 
 ### GET ACCOUNT INFORMATION
 GET http://localhost:3003/users/account
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjUzMmRkMTlkZWZlNWI1ZDk1NzA1YSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NzAxNDMzNiwiZXhwIjoxNjc3MDE3OTM2fQ._yZjT-bNlLyFYyBhw5RZDCbzUnnVA09saRZ_bRlgrW4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcyNzUxNTYsImV4cCI6MTY3NzI3ODc1Nn0.OIUFJdsPl3m5t8He21y_7imPy1c9rVr4HOaqXGLarZQ
 Content-Type: application/json
 
 
 ### GET USER BY ID
-GET http://localhost:3003/users/63f532dd19defe5b5d95705a
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxNjUwMzIsImV4cCI6MTY3NzE2ODYzMn0.0lIeo5PkyEHZTsEEZh_7il722NGlzbU-gj0m-niYJGg
+GET http://localhost:3003/users/63f92ff13d0bc915472361d6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcyNzUxNTYsImV4cCI6MTY3NzI3ODc1Nn0.OIUFJdsPl3m5t8He21y_7imPy1c9rVr4HOaqXGLarZQ
 Content-Type: application/json
 
 
 ### FOLLOW
-PATCH http://localhost:3003/users/follow/63f7bbcb7ee51afe621daded
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxODE4NTEsImV4cCI6MTY3NzE4NTQ1MX0.5xhcXQtWxKgry6vZMzGO8X-F_Wrjx2ECTWek5eSENbI
+PATCH http://localhost:3003/users/follow/63f92ff13d0bc915472361d6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcyNzUxNTYsImV4cCI6MTY3NzI3ODc1Nn0.OIUFJdsPl3m5t8He21y_7imPy1c9rVr4HOaqXGLarZQ
 Content-Type: application/json
 
 
 ### UNFOLLOW
-PATCH http://localhost:3003/users/unfollow/63f532dd19defe5b5d95705a
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcxNjA4MzQsImV4cCI6MTY3NzE2NDQzNH0.wYA6Ax1j4zhzCsq3Tkq_epyDWMA9iwWgsm4HjsmaMsI
+PATCH http://localhost:3003/users/unfollow/63f92ff13d0bc915472361d6
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcyNzUxNTYsImV4cCI6MTY3NzI3ODc1Nn0.OIUFJdsPl3m5t8He21y_7imPy1c9rVr4HOaqXGLarZQ
 Content-Type: application/json
 
 

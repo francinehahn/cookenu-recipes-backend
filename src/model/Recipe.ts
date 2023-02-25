@@ -1,8 +1,17 @@
-export type Recipe = {
-    id: string,
-    title: string,
-    description: string,
-    created_at: Date
+import mongoose from "mongoose"
+
+export class Recipe {
+    constructor (
+        private title: string,
+        private description: string,
+        private created_at: Date,
+        private user: mongoose.Schema.Types.ObjectId
+    ) {
+        this.title = title
+        this.description = description
+        this.created_at = created_at
+        this.user = user
+    }
 }
 
 export interface inputCreateRecipeDTO {
