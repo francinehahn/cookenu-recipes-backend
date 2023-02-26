@@ -4,10 +4,7 @@
 API REST developed with the objective of simulating a social media in which the users can share recipes. A user can follow other users to see their recipes and also share their own content. Data architecture, user authentication and cryptography were implemented.
 
 ## 🔗Documentation
-https://documenter.getpostman.com/view/25256145/2s93CGRbBT
 
-## 🔗Deploy
-https://cookenu24.onrender.com
 
 ## ☑️Requests
 - SignUp
