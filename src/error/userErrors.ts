@@ -127,3 +127,9 @@ export class userNotAllowedToDeleteAccount extends CustomError {
     }
 }
 
+export class noUsersFound extends CustomError {
+    constructor () {
+        super(422, "No users have been found with the given search parameter.")
+    }
+}
+

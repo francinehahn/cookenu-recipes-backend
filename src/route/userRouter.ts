@@ -9,6 +9,7 @@ const userDatabase = new UserDatabase()
 const userBusiness = new UserBusiness(userDatabase)
 const userController = new UserController(userBusiness)
 
+userRouter.get("/", (req, res) => userController.getAllUsers(req, res))
 userRouter.get("/account", (req, res) => userController.getAccountInfo(req, res))
 userRouter.get("/:userId", (req, res) => userController.getUserById(req, res))
 

@@ -15,9 +15,24 @@ export class UserDatabase implements UserRepository {
     }
 
 
+    getAllUsers = async (search: string): Promise<any> => {
+        try {
+            return await UserModel.find({
+                name: {$regex: `${search || ""}`, $options: "i"}
+            })
+        } catch (err: any) {
+            throw new CustomError(err.statusCode, err.message)
+        }
+    }
+
+
     followUser = async (id: string, newFollow: Follow): Promise<any> => {
         try {
-            return await UserModel.findOneAndUpdate({_id: id, "following.id": {$nin: [newFollow.id]}}, {$push: {following: {...newFollow}}})
+            return await UserModel.findOneAndUpdate({
+                _id: id, "following.id": {$nin: [newFollow.id]}
+            }, {
+                $push: {following: {...newFollow}}
+            })
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }

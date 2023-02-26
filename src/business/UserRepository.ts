@@ -4,6 +4,7 @@ import { Follow, updateUnfollowUserDTO } from "../model/Follow"
 
 export interface UserRepository {
     signup (newUser: User): Promise<void>
+    getAllUsers (search: string): Promise<any>
     getUserByEmail (email: string): Promise<any>
     getUserById (id: string): Promise<any>
     followUser (id: string, newFollow: Follow): Promise<any>

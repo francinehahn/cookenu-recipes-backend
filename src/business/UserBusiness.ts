@@ -1,8 +1,8 @@
 import mongoose from "mongoose"
 import { CustomError } from "../error/CustomError"
-import { DuplicateEmail, DuplicateFollow, EmailNotFound, IncorrectPassword, InvalidEmail, InvalidPassword, InvalidUserId, InvalidUserRole, MissingEmail, MissingPassword, MissingRole, MissingToken, MissingUserId, MissingUserName, NotPossibleToUnfollow, Unauthorized, userNotAllowedToDeleteAccount, UserNotFound } from "../error/userErrors"
+import { DuplicateEmail, DuplicateFollow, EmailNotFound, IncorrectPassword, InvalidEmail, InvalidPassword, InvalidUserId, InvalidUserRole, MissingEmail, MissingPassword, MissingRole, MissingToken, MissingUserId, MissingUserName, NotPossibleToUnfollow, noUsersFound, Unauthorized, userNotAllowedToDeleteAccount, UserNotFound } from "../error/userErrors"
 import { Follow, inputFollowUserDTO, updateUnfollowUserDTO } from "../model/Follow"
-import { inputLoginDTO, inputSignupDTO, User, returnUserInfoDTO, inputDeleteAccountDTO, USER_ROLE, updatePasswordDTO, inputGetUserByIdDTO } from "../model/User"
+import { inputLoginDTO, inputSignupDTO, User, returnUserInfoDTO, inputDeleteAccountDTO, USER_ROLE, updatePasswordDTO, inputGetUserByIdDTO, inputGetAllUsersDTO, getUserInfoDTO } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
 import { transporter } from "../services/mailTransporter"
@@ -87,6 +87,29 @@ export class UserBusiness {
             const token = await authenticator.generateToken({id: userEmail._id, role: userEmail.role})
             
             return token
+
+        } catch (err: any) {
+            throw new CustomError(err.statusCode, err.message)
+        }
+    }
+
+
+    getAllUsers = async (input: inputGetAllUsersDTO): Promise<getUserInfoDTO[]> => {
+        try {
+            if (!input.token) {
+                throw new MissingToken()
+            }
+            
+            const authenticator = new Authenticator()
+            await authenticator.getTokenData(input.token)
+
+            const result = await this.userDatabase.getAllUsers(input.search)
+
+            if (result.length === 0) {
+                throw new noUsersFound()
+            }
+
+            return result
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)

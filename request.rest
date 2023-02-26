@@ -26,6 +26,12 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc4NGM1Y2E2MmUz
 Content-Type: application/json
 
 
+### GET ALL USERS
+GET http://localhost:3003/users?search=iuhuihu
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Nzc0Mzg0NjAsImV4cCI6MTY3NzQ0MjA2MH0.1TM-34614XSixuzvSICtPv9wNuPVnxEfaluSbxRmVD4
+Content-Type: application/json
+
+
 ### GET ACCOUNT INFORMATION
 GET http://localhost:3003/users/account
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzcyNzUxNTYsImV4cCI6MTY3NzI3ODc1Nn0.OIUFJdsPl3m5t8He21y_7imPy1c9rVr4HOaqXGLarZQ

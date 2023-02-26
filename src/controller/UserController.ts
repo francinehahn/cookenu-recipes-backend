@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { UserBusiness } from "../business/UserBusiness"
-import { inputDeleteAccountDTO, inputGetUserByIdDTO, inputLoginDTO, inputSignupDTO } from "../model/User"
+import { inputDeleteAccountDTO, inputGetAllUsersDTO, inputGetUserByIdDTO, inputLoginDTO, inputSignupDTO } from "../model/User"
 import { inputFollowUserDTO } from "../model/Follow"
 
 
@@ -36,6 +36,22 @@ export class UserController {
             const token = await this.userBusiness.login(input)
 
             res.status(201).send({token})
+            
+        } catch (err: any) {
+            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+        }
+    }
+
+
+    getAllUsers = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const input: inputGetAllUsersDTO = {
+                search: req.query.search as string,
+                token: req.headers.authorization as string
+            }
+
+            const result = await this.userBusiness.getAllUsers(input)
+            res.status(200).send(result)
             
         } catch (err: any) {
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
