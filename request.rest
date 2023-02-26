@@ -45,8 +45,8 @@ Content-Type: application/json
 
 
 ### UNFOLLOW
-PATCH http://localhost:3003/users/unfollow/63f92ff13d0bc915472361d6
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNjM5NzYsImV4cCI6MTY3NzM2NzU3Nn0.ClWCBo-K1C-bPRlh-RWkbybXIiXZxn-ZfMRVpORLVgU
+PATCH http://localhost:3003/users/unfollow/63f784c5ca62e3aaac899b1f
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Nzc0MzM2MjcsImV4cCI6MTY3NzQzNzIyN30.bxiY2UpsHQ_hg6NzXjbqkNTGOl7Q9Yzbpixa8J6ezjs
 Content-Type: application/json
 
 

@@ -9,7 +9,7 @@ export interface inputFollowUserDTO {
     token: string
 }
 
-export interface updateFollowsDTO {
+export interface updateUnfollowUserDTO {
     id: string,
-    following: Follow[]
+    followingId: string
 }

@@ -2,7 +2,7 @@ import { UserRepository } from "../business/UserRepository"
 import { CustomError } from "../error/CustomError"
 import { UserModel } from "../model/UserModel"
 import { updatePasswordDTO, User } from "../model/User"
-import { Follow, updateFollowsDTO } from "../model/Follow"
+import { Follow, updateUnfollowUserDTO } from "../model/Follow"
 
 
 export class UserDatabase implements UserRepository {
@@ -24,9 +24,9 @@ export class UserDatabase implements UserRepository {
     }
 
 
-    unfollowUser = async (updateUser: updateFollowsDTO): Promise<void> => {
+    unfollowUser = async (unfollow: updateUnfollowUserDTO): Promise<void> => {
         try {
-            await UserModel.findOneAndUpdate({_id: updateUser.id}, {following: updateUser.following})
+            await UserModel.findOneAndUpdate({_id: unfollow.id}, {$pull: {following: {id: unfollow.followingId}}})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }

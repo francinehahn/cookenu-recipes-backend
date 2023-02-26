@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
 import { CustomError } from "../error/CustomError"
 import { DuplicateEmail, DuplicateFollow, EmailNotFound, IncorrectPassword, InvalidEmail, InvalidPassword, InvalidUserId, InvalidUserRole, MissingEmail, MissingPassword, MissingRole, MissingToken, MissingUserId, MissingUserName, NotPossibleToUnfollow, Unauthorized, userNotAllowedToDeleteAccount, UserNotFound } from "../error/userErrors"
-import { Follow, inputFollowUserDTO, updateFollowsDTO } from "../model/Follow"
+import { Follow, inputFollowUserDTO, updateUnfollowUserDTO } from "../model/Follow"
 import { inputLoginDTO, inputSignupDTO, User, returnUserInfoDTO, inputDeleteAccountDTO, USER_ROLE, updatePasswordDTO, inputGetUserByIdDTO } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
 import { HashManager } from "../services/HashManager"
@@ -172,32 +172,32 @@ export class UserBusiness {
                 throw new UserNotFound()
             }
 
-            const user = await this.userDatabase.getUserById(input.userId)
-            if (!user) {
+            const userToUnfollow = await this.userDatabase.getUserById(input.userId)
+            if (!userToUnfollow) {
                 throw new UserNotFound()
             }
 
             const authenticator = new Authenticator()
             const {id, role} = await authenticator.getTokenData(input.token)
 
+            const accountInfoBeforeQuery = await this.userDatabase.getUserById(id)
+           
             if (id === input.userId) {
                 throw new InvalidUserId()
             }
 
-            let accountInfo = await this.userDatabase.getUserById(id)
-            const userToBeUnfollowed = accountInfo.following.filter((item: Follow) => item.email === user.email)
-            
-            if (userToBeUnfollowed.length === 0) {
-                throw new NotPossibleToUnfollow()
-            }
-            
-            const unfollowUser = accountInfo.following.filter((item: Follow) => item.email !== user.email)
-            const updateUser: updateFollowsDTO = {
+            const unfollow: updateUnfollowUserDTO = {
                 id,
-                following: unfollowUser
+                followingId: input.userId
             }
 
-            await this.userDatabase.unfollowUser(updateUser)
+            await this.userDatabase.unfollowUser(unfollow)
+
+            const accountInfoAfterQuery = await this.userDatabase.getUserById(id)
+
+            if (accountInfoBeforeQuery.following.length === accountInfoAfterQuery.following.length) {
+                throw new NotPossibleToUnfollow()
+            }
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
