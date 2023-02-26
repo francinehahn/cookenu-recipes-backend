@@ -150,7 +150,7 @@ export class RecipeBusiness {
     }
 
 
-    /*deleteRecipe = async (input: inputGetRecipeDTO): Promise<void> => {
+    deleteRecipe = async (input: inputGetRecipeDTO): Promise<void> => {
         try {
             if (!input.token) {
                 throw new MissingToken()
@@ -158,20 +158,19 @@ export class RecipeBusiness {
             if (!input.id) {
                 throw new MissingRecipeId()
             }
+            if (!mongoose.Types.ObjectId.isValid(input.id)) {
+                throw new InvalidRecipeId()
+            }
 
             const recipe = await this.recipeDatabase.getRecipeById(input.id)
             if (!recipe) {
-                throw new NoRecipeFound()
+                throw new InvalidRecipeId()
             }
 
             const authenticator = new Authenticator()
-            const tokenIsValid = await authenticator.getTokenData(input.token)
-
-            if (!tokenIsValid) {
-                throw new Unauthorized()
-            }
-
-            if (tokenIsValid.role.toUpperCase() === USER_ROLE.NORMAL && recipe.fk_user_id !== tokenIsValid.id) {
+            const {id, role} = await authenticator.getTokenData(input.token)
+          
+            if (role.toUpperCase() === USER_ROLE.NORMAL && recipe.user.toString() !== id) {
                 throw new userNotAllowedToDeleteRecipe()
             }
 
@@ -180,5 +179,5 @@ export class RecipeBusiness {
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }*/
+    }
 }

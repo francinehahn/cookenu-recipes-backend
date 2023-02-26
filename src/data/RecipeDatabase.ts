@@ -42,11 +42,11 @@ export class RecipeDatabase implements RecipeRepository {
     }
 
 
-    /*deleteRecipe = async (id: string): Promise<void> => {
+    deleteRecipe = async (id: string): Promise<void> => {
         try {
-            await BaseDatabase.connection(this.TABLE_NAME).del().where("id", id)
+            await RecipeModel.findOneAndDelete({_id: id})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
-    }*/
+    }
 }

@@ -69,7 +69,7 @@ export class RecipeController {
     }
 
 
-    /*deleteRecipe = async (req: Request, res: Response): Promise<void> => {
+    deleteRecipe = async (req: Request, res: Response): Promise<void> => {
         try {
             const input: inputGetRecipeDTO = {
                 id: req.params.id,
@@ -82,5 +82,5 @@ export class RecipeController {
         } catch (err: any) {
             res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
         }
-    }*/
+    }
 }

@@ -15,10 +15,10 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "fran_hahn@hotmail.com",
-    "password": "yeu37ydlwq"
+    "email": "grendene.lari@gmail.com",
+    "password": "123456"
 }
-
+//yeu37ydlwq
 
 ### DELETE ACCOUNT
 DELETE http://localhost:3003/users/63f532dd19defe5b5d95705a
@@ -52,7 +52,7 @@ Content-Type: application/json
 
 ### CREATE RECIPE
 POST http://localhost:3003/recipes/create
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNjMyOTcsImV4cCI6MTY3NzM2Njg5N30.lDY6cxAiJN9R_ttGf-Qix52RDz_yxV3qE3bcZA-kfKU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNzE3NzAsImV4cCI6MTY3NzM3NTM3MH0._221PKcY2750FsHSHouC_QzZJaCU3eYMarC2WhxK8u8
 Content-Type: application/json
 
 {
@@ -72,8 +72,8 @@ Content-Type: application/json
 
 
 ### DELETE RECIPE
-DELETE http://localhost:3003/recipes/7
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBmN2ZhY2NjLWQ0YjAtNDE2Mi1hMzBkLWVkZDBiM2UyZmMyYSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY3NjUwMTQ3NiwiZXhwIjoxNjc2NTA1MDc2fQ.L_EVnVMd_a893Tb-ks3cBWI26XdretrFb5K8PZKX_8g
+DELETE http://localhost:3003/recipes/63fa8845c72419f269589e7e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNzE3NzAsImV4cCI6MTY3NzM3NTM3MH0._221PKcY2750FsHSHouC_QzZJaCU3eYMarC2WhxK8u8
 Content-Type: application/json
 
 
