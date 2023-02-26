@@ -1,11 +1,10 @@
 import mongoose from "mongoose"
 import { CustomError } from "../error/CustomError"
 import { InvalidRecipeId, MissingDescription, MissingRecipeId, MissingTitle, NoRecipesFound } from "../error/recipeErrors"
-import { MissingToken, Unauthorized, unauthorizedUserRole, userNotAllowedToDeleteRecipe, userNotAllowedToEditRecipe } from "../error/userErrors"
+import { MissingToken, unauthorizedUserRole, userNotAllowedToDeleteRecipe, userNotAllowedToEditRecipe } from "../error/userErrors"
 import { inputCreateRecipeDTO, inputEditRecipeDTO, inputGetRecipeDTO, pushRecipeDTO, Recipe, returnRecipesDTO, updateRecipeDTO } from "../model/Recipe"
 import { USER_ROLE } from "../model/User"
 import { Authenticator } from "../services/Authenticator"
-import { IdGenerator } from "../services/IdGenerator"
 import { RecipeRepository } from "./RecipeRepository"
 import { UserRepository } from "./UserRepository"
 
