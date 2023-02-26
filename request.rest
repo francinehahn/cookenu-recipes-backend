@@ -15,10 +15,10 @@ POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
-    "email": "pedro.sumare@gmail.com",
-    "password": "123456"
+    "email": "fran_hahn@hotmail.com",
+    "password": "yeu37ydlwq"
 }
-//yeu37ydlwq
+
 
 ### DELETE ACCOUNT
 DELETE http://localhost:3003/users/63f532dd19defe5b5d95705a
@@ -62,13 +62,12 @@ Content-Type: application/json
 
 
 ### EDIT RECIPE
-PUT http://localhost:3003/recipes/6
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYzA5NWIxLTc3NmYtNDFkNC05NDM1LTVhMmNmZDEwZmM2MiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzY1MDAyMTIsImV4cCI6MTY3NjUwMzgxMn0.fH5N11TkVtLUwvm4WAuNVvU8xwFQR-8baNxLu2EtdoM
+PUT http://localhost:3003/recipes/63fa86eec72419f269589e76
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjc3MTdjMmQwZTFhZjBjOTI4NGU2ZiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNjk4MTgsImV4cCI6MTY3NzM3MzQxOH0.o0aXeDU0Qy9EIDMT_ONHhgUj3mUxMw9VkthmdMlmvsE
 Content-Type: application/json
 
 {
-    "title": "teste3",
-    "description": "descrição 2"
+    "title": "Empadão de frango 2"
 }
 
 

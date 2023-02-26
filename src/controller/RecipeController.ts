@@ -51,7 +51,7 @@ export class RecipeController {
     }
 
 
-    /*editRecipe = async (req: Request, res: Response): Promise<void> => {
+    editRecipe = async (req: Request, res: Response): Promise<void> => {
         try {
             const input: inputEditRecipeDTO = {
                 id: req.params.id,
@@ -69,7 +69,7 @@ export class RecipeController {
     }
 
 
-    deleteRecipe = async (req: Request, res: Response): Promise<void> => {
+    /*deleteRecipe = async (req: Request, res: Response): Promise<void> => {
         try {
             const input: inputGetRecipeDTO = {
                 id: req.params.id,

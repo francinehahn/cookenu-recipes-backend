@@ -1,9 +1,7 @@
-import { UserModel } from "../model/UserModel"
 import { RecipeRepository } from "../business/RecipeRepository"
 import { CustomError } from "../error/CustomError"
-import { getUserInfoDTO, User } from "../model/User"
 import { RecipeModel } from "../model/RecipeModel"
-import { Recipe } from "../model/Recipe"
+import { Recipe, updateRecipeDTO } from "../model/Recipe"
 
 
 export class RecipeDatabase implements RecipeRepository {
@@ -35,19 +33,16 @@ export class RecipeDatabase implements RecipeRepository {
     }
 
 
-    /*editRecipe = async (updateRecipe: updateRecipeDTO): Promise<void> => {
+    editRecipe = async (updateRecipe: updateRecipeDTO): Promise<void> => {
         try {
-            await BaseDatabase.connection(this.TABLE_NAME)
-            .update({title: updateRecipe.title, description: updateRecipe.description})
-            .where("id", updateRecipe.id)
-
+            await RecipeModel.findOneAndUpdate({_id: updateRecipe.id}, {title: updateRecipe.title, description: updateRecipe.description})
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
     }
 
 
-    deleteRecipe = async (id: string): Promise<void> => {
+    /*deleteRecipe = async (id: string): Promise<void> => {
         try {
             await BaseDatabase.connection(this.TABLE_NAME).del().where("id", id)
         } catch (err: any) {
