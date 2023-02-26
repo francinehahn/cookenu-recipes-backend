@@ -13,6 +13,7 @@ https://cookenu24.onrender.com
 - SignUp
 - Login
 - Delete Account
+- Get All Users
 - Get Account Information
 - Get Another User's Account Information
 - Follow An Account
