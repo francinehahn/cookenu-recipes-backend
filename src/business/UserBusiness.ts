@@ -143,28 +143,16 @@ export class UserBusiness {
                 throw new InvalidUserId()
             }
 
-            const accountInfo = await this.userDatabase.getUserById(id)
-            
-            for (let item of accountInfo.following) {
-                if (item.email === idExists.email) {
-                    throw new DuplicateFollow()
-                }
-            }
-
-            const newFollow = {
+            const newFollow: Follow = {
                 id: idExists.id,
                 name: idExists.name,
                 email: idExists.email
             }
 
-            accountInfo.following.push(newFollow)
-
-            const updateUser: updateFollowsDTO = {
-                id,
-                following: accountInfo.following
+            const result = await this.userDatabase.followUser(id, newFollow)
+            if (!result) {
+                throw new DuplicateFollow()
             }
-
-            await this.userDatabase.followUser(updateUser)
 
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)

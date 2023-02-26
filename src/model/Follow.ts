@@ -1,4 +1,5 @@
 export type Follow = {
+    id: string,
     name: string,
     email: string
 }

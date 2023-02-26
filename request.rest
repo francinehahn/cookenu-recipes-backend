@@ -39,8 +39,8 @@ Content-Type: application/json
 
 
 ### FOLLOW
-PATCH http://localhost:3003/users/follow/63f7717c2d0e1af0c9284e6f
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjkyZmYxM2QwYmM5MTU0NzIzNjFkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNjU0NzksImV4cCI6MTY3NzM2OTA3OX0.uA13BEtaNdL8nA3CxYIFxnuEX6iI6cqs7JYXYg7L9wg
+PATCH http://localhost:3003/users/follow/63f784c5ca62e3aaac899b1f
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Nzc0MzM2MjcsImV4cCI6MTY3NzQzNzIyN30.bxiY2UpsHQ_hg6NzXjbqkNTGOl7Q9Yzbpixa8J6ezjs
 Content-Type: application/json
 
 
