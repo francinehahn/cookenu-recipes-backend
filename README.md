@@ -23,7 +23,10 @@ https://documenter.getpostman.com/view/25256145/2s93CGRbBT
 - Recover Password
 
 ## 💻Technologies
-- Node.js
+- NodeJs
+- Express
 - TypeScript
+- Bcryptjs (criptography)
+- Jsonwebtoken (authentication)
 - Mongoose
 - MongoDB
