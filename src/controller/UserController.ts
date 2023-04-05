@@ -21,7 +21,7 @@ export class UserController {
             res.status(201).send("Success! The user has been registered.")
 
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -38,7 +38,7 @@ export class UserController {
             res.status(201).send({token})
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -54,7 +54,7 @@ export class UserController {
             res.status(200).send(result)
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -67,7 +67,7 @@ export class UserController {
             res.status(200).send(result)
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -83,7 +83,7 @@ export class UserController {
             res.status(201).send(`Success! The user is now following the account id ${input.userId}.`)
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -99,7 +99,7 @@ export class UserController {
             res.status(201).send(`Success! The user has unfollowed the user id ${input.userId}.`)
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -115,7 +115,7 @@ export class UserController {
             res.status(200).send(result)
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -131,7 +131,7 @@ export class UserController {
             res.status(201).send("Success! The account has been deleted.")
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -144,7 +144,7 @@ export class UserController {
             res.status(201).send("Success! An e-mail has been sent to the user.")
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 }

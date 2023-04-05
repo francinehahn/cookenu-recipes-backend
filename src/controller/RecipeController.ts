@@ -18,7 +18,7 @@ export class RecipeController {
             res.status(201).send("Success! The recipe has been registered.")
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -30,7 +30,7 @@ export class RecipeController {
             res.status(200).send(result)
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -46,7 +46,7 @@ export class RecipeController {
             res.status(200).send(result)
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -64,7 +64,7 @@ export class RecipeController {
             res.status(201).send("Success! The recipe has been edited.")
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 
@@ -80,7 +80,7 @@ export class RecipeController {
             res.status(200).send("Success! The recipe has been deleted.")
             
         } catch (err: any) {
-            res.status(err.statusCode || 400).send(err.message || err.sqlMessage)
+            res.status(err.statusCode || 400).send(err.message)
         }
     }
 }
