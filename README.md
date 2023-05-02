@@ -18,7 +18,8 @@ https://documenter.getpostman.com/view/25256145/2s93CGRbBT
 - Create Recipe
 - Edit Recipe
 - Delete Recipe
-- Get Recipes
+- Get Recipes From The Accounts The User Follows
+- Get Recipes Registered By The User
 - Get Recipe By Id
 - Recover Password
 

@@ -23,10 +23,22 @@ export class RecipeController {
     }
 
 
-    getRecipes = async (req: Request, res: Response): Promise<void> => {
+    getRecipesFromTheAccountsTheUserFollows = async (req: Request, res: Response): Promise<void> => {
         try {
             const token = req.headers.authorization as string
-            const result = await this.recipeBusiness.getRecipes(token)
+            const result = await this.recipeBusiness.getRecipesFromTheAccountsTheUserFollows(token)
+            res.status(200).send(result)
+            
+        } catch (err: any) {
+            res.status(err.statusCode || 400).send(err.message)
+        }
+    }
+
+
+    getRecipesRegisteredByTheUser = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const token = req.headers.authorization as string
+            const result = await this.recipeBusiness.getRecipesRegisteredByTheUser(token)
             res.status(200).send(result)
             
         } catch (err: any) {

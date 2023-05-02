@@ -39,7 +39,7 @@ export class RecipeBusiness {
     }
 
 
-    getRecipes = async (token: string): Promise<returnRecipesDTO[]> => {
+    getRecipesFromTheAccountsTheUserFollows = async (token: string): Promise<returnRecipesDTO[]> => {
         try {
             if (!token) {
                 throw new MissingToken()
@@ -49,15 +49,39 @@ export class RecipeBusiness {
             const {id, role} = await authenticator.getTokenData(token)
             
             const user = await this.userDatabase.getUserById(id)
-    
+
             const result = []
             for (let item of user.following) {
                 const recipes = await this.recipeDatabase.getRecipes(item.id)
-                console.log(recipes)
+                
                 if (recipes.length > 0) {
                     result.push(...recipes)
                 }
             }
+
+            if (result.length === 0) {
+                throw new NoRecipesFound()
+            }
+
+            return result
+
+        } catch (err: any) {
+            throw new CustomError(err.statusCode, err.message)
+        }
+    }
+
+
+    getRecipesRegisteredByTheUser = async (token: string): Promise<returnRecipesDTO[]> => {
+        try {
+            if (!token) {
+                throw new MissingToken()
+            }
+
+            const authenticator = new Authenticator()
+            const {id, role} = await authenticator.getTokenData(token)
+        
+
+            const result = await this.recipeDatabase.getRecipes(id)
 
             if (result.length === 0) {
                 throw new NoRecipesFound()
