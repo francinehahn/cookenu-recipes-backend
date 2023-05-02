@@ -27,8 +27,8 @@ Content-Type: application/json
 
 
 ### GET ALL USERS
-GET http://localhost:3003/users?search=iuhuihu
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2Nzc0Mzg0NjAsImV4cCI6MTY3NzQ0MjA2MH0.1TM-34614XSixuzvSICtPv9wNuPVnxEfaluSbxRmVD4
+GET http://localhost:3003/users
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2ODMwNjIzMjcsImV4cCI6MTY4MzA2NTkyN30.nD_2jBRkGnERpIqX6qdaqkMNJAWX2Z0T8x-q6Tt1ZzA
 Content-Type: application/json
 
 

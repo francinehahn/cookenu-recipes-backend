@@ -17,9 +17,9 @@ export class UserDatabase implements UserRepository {
 
     getAllUsers = async (search: string): Promise<any> => {
         try {
-            return await UserModel.find({
-                name: {$regex: `${search || ""}`, $options: "i"}
-            })
+            return await UserModel.find(
+                {name: {$regex: `${search || ""}`, $options: "i"}}, {password: 0}
+            )
         } catch (err: any) {
             throw new CustomError(err.statusCode, err.message)
         }
