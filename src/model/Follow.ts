@@ -1,4 +1,4 @@
-export type Follow = {
+export interface Follow {
     id: string,
     name: string,
     email: string

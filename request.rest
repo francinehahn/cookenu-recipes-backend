@@ -83,9 +83,15 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFh
 Content-Type: application/json
 
 
-### GET RECIPES
-GET http://localhost:3003/recipes
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjkyZmYxM2QwYmM5MTU0NzIzNjFkNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NzczNjU0NzksImV4cCI6MTY3NzM2OTA3OX0.uA13BEtaNdL8nA3CxYIFxnuEX6iI6cqs7JYXYg7L9wg
+### GET RECIPES FROM THE ACCOUNTS THE USER FOLLOWS
+GET http://localhost:3003/recipes/following
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2ODMwNjExMDksImV4cCI6MTY4MzA2NDcwOX0.-aIXK72Iunzm104SNdS0MjEaPpWbf2FOE6lJN_VaEME
+Content-Type: application/json
+
+
+### GET RECIPES REGISTERED BY THE USER
+GET http://localhost:3003/recipes/user
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZjdiYmNiN2VlNTFhZmU2MjFkYWRlZCIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2ODMwNjExMDksImV4cCI6MTY4MzA2NDcwOX0.-aIXK72Iunzm104SNdS0MjEaPpWbf2FOE6lJN_VaEME
 Content-Type: application/json
 
 
